@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="citasApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patitas</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container div {
+            margin-bottom: 15px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-container input[type="datetime-local"] {
+            padding: 6px;
+        }
+
+        .form-container button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .form-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="CitasController">
+        <div class="button-container">
+            <button ng-click="nuevaCita = {}">Nueva Cita</button>
+            <button ng-click="verCitas()">Ver Citas</button>
+        </div>
+
+        <div class="form-container">
+            <div>
+                <label for="nombreCliente">Nombre del Cliente</label>
+                <input type="text" id="nombreCliente" placeholder="Ingresa el nombre del cliente" ng-model="nuevaCita.nombreCliente">
+            </div>
+
+            <div>
+                <label for="nombreMascota">Nombre de la Mascota</label>
+                <input type="text" id="nombreMascota" placeholder="Ingresa el nombre de la mascota" ng-model="nuevaCita.nombreMascota">
+            </div>
+
+            <div>
+                <label for="razonCita">Razón de la Cita</label>
+                <textarea id="razonCita" rows="3" placeholder="Describe la razón de la cita" ng-model="nuevaCita.razonCita"></textarea>
+            </div>
+
+            <div>
+                <label for="fechaHoraCita">Fecha y Hora de la Cita</label>
+                <input type="datetime-local" id="fechaHoraCita" ng-model="nuevaCita.fechaHoraCita">
+            </div>
+
+            <div>
+                <button ng-click="agregarCita()">OK</button>
+            </div>
+        </div>
+
+        <div>
+            <h3>Citas Guardadas</h3>
+            <ul>
+                <li ng-repeat="cita in citas">
+                    Cliente: {{cita.nombreCliente}}, Mascota: {{cita.nombreMascota}}, Razón: {{cita.razonCita}}, Fecha: {{cita.fechaHoraCita}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        angular.module('citasApp', [])
+            .controller('CitasController', function ($scope) {
+                $scope.citas = [];
+                $scope.nuevaCita = {};
+
+                $scope.agregarCita = function () {
+                    if (
+                        $scope.nuevaCita.nombreCliente &&
+                        $scope.nuevaCita.nombreMascota &&
+                        $scope.nuevaCita.razonCita &&
+                        $scope.nuevaCita.fechaHoraCita
+                    ) {
+                        $scope.citas.push(angular.copy($scope.nuevaCita));
+                        $scope.nuevaCita = {};
+                        alert('Cita guardada.');
+                    } else {
+                        alert('Completa todos los campos.');
+                    }
+                };
+
+                $scope.verCitas = function () {
+                    alert('Mostrando citas');
+                };
+            });
+    </script>
+</body>
+</html>
