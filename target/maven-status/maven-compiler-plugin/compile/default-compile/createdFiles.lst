@@ -1,0 +1,8 @@
+com\veterinaria\patitas\VeterinariPatitasApplication.class
+com\veterinaria\patitas\repository\CitasReposity.class
+com\veterinaria\patitas\controller\CitasController.class
+com\veterinaria\patitas\bean\CitasDTO.class
+com\veterinaria\patitas\bean\CitasDTO$CitasDTOBuilder.class
+com\veterinaria\patitas\RestController\CitasRestControler.class
+com\veterinaria\patitas\service\CitasService.class
+com\veterinaria\patitas\entity\CitasEntity.class
