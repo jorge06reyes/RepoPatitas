@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.veterinaria.patitas.bean.CitasDTO;
@@ -38,9 +39,9 @@ public class CitasRestControler {
 	}
 	
 	@DeleteMapping("EliminaCita")
-	public ResponseEntity<String> eliminaCita(@RequestBody Integer idCita){
+	public ResponseEntity<String> eliminaCita(@RequestParam("idCita") String idCita){
 		
-		citasService.eliminaCita(idCita);
+		citasService.eliminaCita(Integer.valueOf(idCita));
 		
 		log.info("Cita " + idCita + " fue eliminada");
 		return new ResponseEntity<>("Cita Eliminada",HttpStatus.NO_CONTENT);
