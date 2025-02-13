@@ -39,16 +39,8 @@ http://localhost:8080
 
 Base de datos H2
 
-La aplicación está configurada para usar una base de datos H2 en modo local. Puedes acceder a la consola web de H2 en:
+La aplicación está configurada para usar una base de datos H2 en modo local. 
 
-http://localhost:8080/h2-console
-
-Credenciales de H2
-
-JDBC URL: jdbc:h2:mem:testdb
-Usuario: sa
-Contraseña: (vacía)
-Estructura del proyecto
 
 src/main/java: Código fuente de la aplicación.
 src/main/resources: Archivos de configuración y plantillas Thymeleaf.
@@ -59,7 +51,8 @@ Tecnologías utilizadas
 Spring Boot: Framework principal para construir la aplicación.
 Thymeleaf: Motor de plantillas para renderizar vistas.
 Base de datos H2: Base de datos embebida para almacenamiento temporal.
-Notas
+AngularJs: Para trabajar y procesar la informacion del back al fornt.
 
+Notas:
 Asegúrate de tener Java 17 y Maven 3.6.3 configurados correctamente en tu entorno.
 Este proyecto está configurado para ejecución local y no incluye configuraciones para entornos de producción.
