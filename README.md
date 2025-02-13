@@ -1,76 +1,65 @@
-Spring Boot Application with Thymeleaf
+Aplicación Spring Boot con Thymeleaf
 
-Description
+Descripción
 
-This is a Spring Boot application that uses Thymeleaf as the template engine for generating web views. The application also uses an H2 database in local mode for data storage.
+Esta es una aplicación Spring Boot que utiliza Thymeleaf como motor de plantillas para generar vistas web. La aplicación también utiliza una base de datos H2 en modo local para el almacenamiento de datos.
 
-System Requirements
+Requisitos del sistema
 
-Java: Version 17
+Java: Versión 17
+Maven: Versión 3.6.3
+Ejecución de la aplicación
 
-Maven: Version 3.6.3
+Paso 1: Clona el repositorio
+Clona este repositorio en tu máquina local:
 
-Running the Application
-
-Step 1: Clone the Repository
-
-Clone this repository to your local machine:
-
+bash
+Copiar
+Editar
 git clone <REPOSITORY_URL>
 cd <PROJECT_NAME>
+Paso 2: Compila la aplicación
+Ejecuta el siguiente comando para compilar el proyecto:
 
-Step 2: Build the Application
-
-Run the following command to compile the project:
-
+bash
+Copiar
+Editar
 mvn clean install
+Paso 3: Ejecuta la aplicación
+Utiliza el siguiente comando para iniciar la aplicación:
 
-Step 3: Run the Application
-
-Use the following command to start the application:
-
+bash
+Copiar
+Editar
 mvn spring-boot:run
-
-Step 4: Access the Application
-
-Once started, you can access the application at:
+Paso 4: Accede a la aplicación
+Una vez iniciada, puedes acceder a la aplicación en:
 
 http://localhost:8080
 
-H2 Database
+Base de datos H2
 
-The application is configured to use an H2 database in local mode. You can access the H2 web console at:
+La aplicación está configurada para usar una base de datos H2 en modo local. Puedes acceder a la consola web de H2 en:
 
 http://localhost:8080/h2-console
 
-H2 Credentials
+Credenciales de H2
 
 JDBC URL: jdbc:h2:mem:testdb
+Usuario: sa
+Contraseña: (vacía)
+Estructura del proyecto
 
-User: sa
+src/main/java: Código fuente de la aplicación.
+src/main/resources: Archivos de configuración y plantillas Thymeleaf.
+templates: Vistas HTML de Thymeleaf.
+application.properties: Configuraciones de la aplicación.
+Tecnologías utilizadas
 
-Password: (empty)
+Spring Boot: Framework principal para construir la aplicación.
+Thymeleaf: Motor de plantillas para renderizar vistas.
+Base de datos H2: Base de datos embebida para almacenamiento temporal.
+Notas
 
-Project Structure
-
-src/main/java: Application source code.
-
-src/main/resources: Configuration files and Thymeleaf templates.
-
-templates: Thymeleaf HTML views.
-
-application.properties: Application configurations.
-
-Technologies Used
-
-Spring Boot: Main framework for building the application.
-
-Thymeleaf: Template engine for rendering views.
-
-H2 Database: Embedded database for temporary storage.
-
-Notes
-
-Ensure you have Java 17 and Maven 3.6.3 properly configured in your environment.
-
-This project is configured for local execution and does not include production environment configurations.
+Asegúrate de tener Java 17 y Maven 3.6.3 configurados correctamente en tu entorno.
+Este proyecto está configurado para ejecución local y no incluye configuraciones para entornos de producción.
