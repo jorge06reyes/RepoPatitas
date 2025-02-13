@@ -1,6 +1,8 @@
 package com.veterinaria.patitas.RestController;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,11 +28,13 @@ public class CitasRestControler {
 	CitasService citasService;
 	
 	@PostMapping("RegistraCita")
-	public ResponseEntity<String> registraCita(@RequestBody CitasDTO citaDto){
-		
-		citasService.registraCita(citaDto);
-		log.info("Cita " + citaDto.toString() + " fue agregada");
-		return new ResponseEntity<>("Cita Agregada",HttpStatus.CREATED);
+	public ResponseEntity<Map<String, Object>> registraCita(@RequestBody CitasDTO citaDto) {
+	    citasService.registraCita(citaDto);
+	    log.info("Cita " + citaDto.toString() + " fue agregada");
+
+	    Map<String, Object> response = new LinkedHashMap<>();
+	    response.put("mensaje", "Cita Agregada");
+	    return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("EliminaCita")

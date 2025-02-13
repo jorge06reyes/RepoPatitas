@@ -11,5 +11,5 @@ import com.veterinaria.patitas.entity.CitasEntity;
 @Repository
 public interface CitasReposity extends CrudRepository<CitasEntity, Integer>{
 	
-	List<CitasEntity> findAll();
+	List<CitasEntity> findAllByOrderByFechaHoraCitaDesc();
 }

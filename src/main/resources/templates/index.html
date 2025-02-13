@@ -1,148 +1,336 @@
 <!DOCTYPE html>
 <html lang="es" ng-app="citasApp">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patitas</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Patitas</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f9f9f9;
+		}
 
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+		.container {
+			max-width: 600px;
+			margin: 20px auto;
+			padding: 35px;
+			background: #fff;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+		}
 
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
 
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s;
-        }
+		button {
+			padding: 10px 15px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			background-color: #007bff;
+			color: white;
+			transition: background-color 0.3s;
+		}
 
-        button:hover {
-            background-color: #0056b3;
-        }
+		btn-borrar:hover {
+			background-color: #0056b3;
+		}
+		
+		.btn-borrar {
+			padding: 10px 15px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			background-color: rgb(255, 0, 0);
+			color: white;
+			transition: background-color 0.3s;
+		}
 
-        .form-container div {
-            margin-bottom: 15px;
-        }
+		.btn-borrar:hover {
+			background-color: rgb(128, 0, 0);
+		}
+		
+		.form-container div {
+			margin-bottom: 15px;
+		}
 
-        .form-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+		.form-container label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
 
-        .form-container input, .form-container textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-        }
+		.form-container input,
+		.form-container textarea {
+			width: 100%;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 14px;
+		}
 
-        .form-container input[type="datetime-local"] {
-            padding: 6px;
-        }
+		.form-container input[type="datetime-local"] {
+			padding: 6px;
+		}
 
-        .form-container button {
-            background-color: #28a745;
-            color: white;
-        }
+		.form-container button {
+			background-color: #28a745;
+			color: white;
+		}
 
-        .form-container button:hover {
-            background-color: #218838;
-        }
-    </style>
+		.form-container button:hover {
+			background-color: #218838;
+		}
+
+		.cita-container {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 15px;
+		}
+
+		.cita-column {
+			flex: 1;
+			padding: 10px;
+			background-color: rgb(224, 224, 224);
+			border-top-right-radius: 10px;
+			border-end-end-radius: 10px;
+		}
+
+		.del-column {
+			flex: 1;
+			background-color: #007bff;
+			border-top-left-radius: 10px;
+			border-bottom-left-radius: 10px;
+			max-width: 10%;
+			font-size: 18px;
+			font-weight: bold;
+			color: #f9f9f9;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.del-column:hover {
+			background-color: rgb(0, 128, 192);
+			cursor: pointer;
+		}
+
+		.li-citas {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+
+
+		/* Estilo del modal */
+		.modal {
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgb(0, 0, 0);
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		.modal-content {
+			background-color: #fefefe;
+			margin: 15% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+			border-radius: 10px;
+		}
+
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	</style>
 </head>
+
 <body>
-    <div class="container" ng-controller="CitasController">
-        <div class="button-container">
-            <button ng-click="nuevaCita = {}">Nueva Cita</button>
-            <button ng-click="verCitas()">Ver Citas</button>
-        </div>
+	<div class="container" ng-controller="CitasController">
+		<div class="button-container">
+			<button ng-click="toggleForm()">
+				Nueva Cita {{ formVisible ? '▲' : '▼'}}
+			</button>
+		</div>
 
-        <div class="form-container">
-            <div>
-                <label for="nombreCliente">Nombre del Cliente</label>
-                <input type="text" id="nombreCliente" placeholder="Ingresa el nombre del cliente" ng-model="nuevaCita.nombreCliente">
-            </div>
+		<div class="form-container" ng-show="formVisible">
+			<div>
+				<label for="nombreCliente">Nombre del Cliente</label>
+				<input type="text" id="nombreCliente" placeholder="Ingresa el nombre del cliente"
+					ng-model="nuevaCita.nombreCliente">
+			</div>
 
-            <div>
-                <label for="nombreMascota">Nombre de la Mascota</label>
-                <input type="text" id="nombreMascota" placeholder="Ingresa el nombre de la mascota" ng-model="nuevaCita.nombreMascota">
-            </div>
+			<div>
+				<label for="nombreMascota">Nombre de la Mascota</label>
+				<input type="text" id="nombreMascota" placeholder="Ingresa el nombre de la mascota"
+					ng-model="nuevaCita.nombreMascota">
+			</div>
 
-            <div>
-                <label for="razonCita">Razón de la Cita</label>
-                <textarea id="razonCita" rows="3" placeholder="Describe la razón de la cita" ng-model="nuevaCita.razonCita"></textarea>
-            </div>
+			<div>
+				<label for="razonCita">Razón de la Cita</label>
+				<textarea id="razonCita" rows="3" placeholder="Describe la razón de la cita"
+					ng-model="nuevaCita.razonCita"></textarea>
+			</div>
 
-            <div>
-                <label for="fechaHoraCita">Fecha y Hora de la Cita</label>
-                <input type="datetime-local" id="fechaHoraCita" ng-model="nuevaCita.fechaHoraCita">
-            </div>
+			<div>
+				<label for="fechaHoraCita">Fecha y Hora de la Cita</label>
+				<input type="datetime-local" id="fechaHoraCita" ng-model="nuevaCita.fechaHoraCita">
+			</div>
 
-            <div>
-                <button ng-click="agregarCita()">OK</button>
-            </div>
-        </div>
+			<div>
+				<button ng-click="agregarCita()">OK</button>
+			</div>
+		</div>
 
-        <div>
-            <h3>Citas Guardadas</h3>
-            <ul>
-                <li ng-repeat="cita in citas">
-                    Cliente: {{cita.nombreCliente}}, Mascota: {{cita.nombreMascota}}, Razón: {{cita.razonCita}}, Fecha: {{cita.fechaHoraCita}}
-                </li>
-            </ul>
-        </div>
-    </div>
+		<div>
+			<h3>Citas Guardadas</h3>
+			<ul>
+				<li ng-repeat="cita in citas" class="li-citas">
 
-    <script>
-        angular.module('citasApp', [])
-            .controller('CitasController', function ($scope) {
-                $scope.citas = [];
-                $scope.nuevaCita = {};
+					<div class="cita-container">
+						<div class="del-column" ng-click="opcCita(cita)">
+							{{cita.id}}<br>...
+						</div>
+						<div class="cita-column">
+							<b>Cliente:</b> {{cita.nombreCliente}}<br>
+							<b>Mascota:</b> {{cita.nombreMascota}}<br>
+							<b>Razón:</b> {{cita.razonCita}}<br><br>
+							<b>Fecha:</b> {{cita.fechaHoraCita | date:'dd/MM/yyyy hh:mm a'}}<br>
+						</div>
+					</div>
+				</li>
 
-                $scope.agregarCita = function () {
-                    if (
-                        $scope.nuevaCita.nombreCliente &&
-                        $scope.nuevaCita.nombreMascota &&
-                        $scope.nuevaCita.razonCita &&
-                        $scope.nuevaCita.fechaHoraCita
-                    ) {
-                        $scope.citas.push(angular.copy($scope.nuevaCita));
-                        $scope.nuevaCita = {};
-                        alert('Cita guardada.');
-                    } else {
-                        alert('Completa todos los campos.');
-                    }
-                };
+			</ul>
+		</div>
+	</div>
 
-                $scope.verCitas = function () {
-                    alert('Mostrando citas');
-                };
-            });
-    </script>
+
+	<script>
+		angular.module('citasApp', [])
+			.controller('CitasController', function ($scope, $http, $compile) {
+				$scope.citas = [];
+				$scope.nuevaCita = {};
+				$scope.selectedCita = null;
+				$scope.modalVisible = false;
+
+				$scope.cargarCitas = function () {
+					const endpoint = '/RestC/ConsultarCitas';
+
+					$http.get(endpoint)
+						.then(function (response) {
+							console.log('Citas cargadas:', response.data);
+							$scope.citas = response.data;
+						})
+						.catch(function (error) {
+							console.error('Error al cargar las citas:', error);
+							alert('No se pudieron cargar las citas.');
+						});
+				};
+
+
+				$scope.agregarCita = function () {
+					if (
+						$scope.nuevaCita.nombreCliente &&
+						$scope.nuevaCita.nombreMascota &&
+						$scope.nuevaCita.razonCita &&
+						$scope.nuevaCita.fechaHoraCita
+					) {
+
+						const endpoint = '/RestC/RegistraCita';
+						const data = angular.copy($scope.nuevaCita);
+						console.log(data);
+
+						$http.post(endpoint, data)
+							.then(function (response) {
+								console.log('Respuesta:', response);
+								if (response.status === 201) {
+									$scope.cargarCitas();
+									$scope.nuevaCita = {};
+									alert('Cita registrada exitosamente.');
+								}
+							})
+							.catch(function (error) {
+								console.error('Error al registrar la cita:', error);
+								alert('Hubo un problema al registrar la cita.');
+							});
+
+					} else {
+						alert('Completa todos los campos.');
+					}
+				};
+
+				$scope.toggleForm = function () {
+					nuevaCita = {};
+					$scope.formVisible = !$scope.formVisible;
+				};
+
+				$scope.opcCita = function (cita) {
+					$scope.selectedCita = cita;
+					$scope.modalVisible = true;
+
+					var modalContent = `
+				            <div id="myModal" class="modal" ng-show="modalVisible">
+				                <div class="modal-content">
+				                    <span class="close" ng-click="closeModal()">&times;</span>
+				                    <h2>Información de la Cita</h2>
+				                    <p><b>Folio:</b> {{selectedCita.id}}</p>
+				                    <p><b>Cliente:</b> {{selectedCita.nombreCliente}}</p>
+				                    <p><b>Mascota:</b> {{selectedCita.nombreMascota}}</p>
+				                    <p><b>Razón:</b> {{selectedCita.razonCita}}</p>
+				                    <p><b>Fecha:</b> {{selectedCita.fechaHoraCita | date:'dd/MM/yyyy HH:mm'}}</p>
+
+				                    <button ng-click="borrarCita()" class = "btn-borrar">
+										Borrar cita
+									</button> 
+				                </div>
+				            </div>
+				        `;
+				        
+					var modalElement = $compile(modalContent)($scope);
+					angular.element(document.body).append(modalElement);
+				}
+
+				$scope.closeModal = function () {
+					var modalElement = document.getElementById('myModal');
+					if (modalElement) {
+						$scope.selectedCita = null;
+						modalElement.remove();
+					}
+				};
+				
+				
+				$scope.borrarCita = function () {
+					console.log($scope.selectedCita);
+				};
+
+				$scope.cargarCitas();
+
+			});
+	</script>
 </body>
+
 </html>

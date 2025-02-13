@@ -33,6 +33,6 @@ public class CitasEntity {
     String nombreCliente;
     String nombreMascota;
     String razonCita;
-    Date fecha;
+    Date fechaHoraCita;
 
 }

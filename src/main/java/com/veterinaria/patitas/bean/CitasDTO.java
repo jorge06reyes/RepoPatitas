@@ -23,5 +23,5 @@ public class CitasDTO {
 	String nombreCliente;
 	String nombreMascota;
 	String razonCita;
-	Date fecha;
+	Date fechaHoraCita;
 }
